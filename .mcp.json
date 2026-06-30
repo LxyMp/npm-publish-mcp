@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "npm-publish": {
+    "mcp-npm-publish": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/Users/bigxin/Documents/Code/mcp/npm-publish/npm-mcp-server.js"],
+      "command": "npx",
+      "args": ["--yes", "--registry", "https://registry.npmjs.org", "mcp-npm-publish"],
       "env": {
         "NPM_TOKEN": "${NPM_TOKEN}"
       }

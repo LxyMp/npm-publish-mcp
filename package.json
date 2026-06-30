@@ -1,11 +1,19 @@
 {
-  "name": "npm-publish-mcp",
-  "version": "1.0.1",
-  "private": true,
+  "name": "mcp-npm-publish",
+  "version": "1.0.2",
   "type": "module",
   "description": "MCP server for npm login/publish using NPM_TOKEN environment variable",
+  "main": "./src/index.js",
+  "bin": {
+    "mcp-npm-publish": "./bin/cli.js"
+  },
+  "files": [
+    "src/",
+    "bin/",
+    "README.md"
+  ],
   "scripts": {
-    "start": "node npm-mcp-server.js"
+    "start": "node ./bin/cli.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0"
