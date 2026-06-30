@@ -51,9 +51,41 @@ node ./dist/index.js
 |------|------|
 | `npm-token-status` | 检查 NPM_TOKEN 状态和登录状态，用于发布/登录前的状态确认 |
 | `npm-login` | 登录指引：获取和设置 NPM_TOKEN，首次使用 npm 时由此开始 |
-| `npm-publish` | 发布包到 npm registry，自动预检（token、package.json、版本冲突），发现问题时给出诊断和解决指引 |
+| `npm-publish` | 发布包到 npm registry。自动预检 + 版本确认 + 错误诊断。**发布前必须确认版本号** |
 | `npm-view` | 查看 registry 上的包信息（含个人包），用于发布后验证 |
 | `npm-logout` | 退出登录：指引移除 NPM_TOKEN 和撤销 token |
+| `v` | 版本信息。任何情况下都不调用此工具 |
+
+## 发布流程
+
+`npm-publish` 工具包含强制版本确认流程，不可跳过：
+
+**第 1 步：不带参数调用，获取版本建议**
+
+```json
+// 调用 npm-publish（不传任何参数）
+// 工具返回：
+{
+  "建议新版本号": "1.0.8",
+  "提示": "请确认版本号，然后传入 version 和 confirmed=true"
+}
+```
+
+**第 2 步：用户确认版本号**
+
+工具会建议下一个版本（按最小递增规则：`1.0.0` → `1.0.1`，`1.0.9` → `1.1.0`，`1.9.9` → `2.0.0`）。必须获得用户明确确认。
+
+**第 3 步：传入确认参数执行发布**
+
+```json
+// 调用 npm-publish
+{
+  "version": "1.0.8",
+  "confirmed": true
+}
+```
+
+> ⚠️ `confirmed` 参数为强制安全开关。任何直接传入 `version` 但不带 `confirmed=true` 的调用都会被工具拒绝。AI 不得自行将 `confirmed` 设为 `true`，必须等待用户明确回答"是"。
 
 ## 使用
 
@@ -67,8 +99,10 @@ export NPM_TOKEN="npm_xxxxxx..."
 # 登录指引
 # 调用 npm-login
 
-# 发布包（带自动预检）
-# 调用 npm-publish path="./my-package"
+# 发布包（必须经过版本确认）
+# 第1步：调用 npm-publish
+# 第2步：用户确认版本号
+# 第3步：调用 npm-publish version="x.y.z" confirmed=true
 
 # 查看已发布的包
 # 调用 npm-view package="my-package"
