@@ -1,6 +1,6 @@
 {
   "name": "mcp-npm-publish",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "description": "MCP server for npm login/publish using NPM_TOKEN environment variable",
   "main": "./src/index.js",
