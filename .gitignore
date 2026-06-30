@@ -1,0 +1,8 @@
+node_modules/
+yarn-error.log
+npm-debug.log*
+.DS_Store
+*.log
+
+# Reasonix 本地会话和用户记忆（个人数据）
+.reasonix/

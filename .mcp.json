@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "npm-publish": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["/Users/bigxin/Documents/Code/mcp/npm-publish/npm-mcp-server.js"],
+      "env": {
+        "NPM_TOKEN": "${NPM_TOKEN}"
+      }
+    }
+  }
+}
