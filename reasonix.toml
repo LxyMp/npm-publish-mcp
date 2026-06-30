@@ -1,7 +1,4 @@
 # Reasonix configuration.
-# Resolution order: flag > ./reasonix.toml > ~/.reasonix/config.toml > built-in defaults.
-# Fields marked user/global only are not overridden by ./reasonix.toml.
-# Secrets are named via api_key_env and stored in Reasonix's global .env; never put keys here.
 
 config_version = 3
 default_model = "deepseek-flash"
@@ -20,13 +17,12 @@ stalled_warning_seconds = 900
 enabled = true
 
 [permissions]
-allow = ["Bash(cd /Users/bigxin/Documents/Code/mcp/npm-publish && git status 2>&1)"]
 [sandbox]
 bash    = "enforce"
 network = true
 
 [[plugins]]
-name    = "npm-publish"
+name    = "mcp-npm-publish"
 command = "node"
-args    = ["/Users/bigxin/Documents/Code/mcp/npm-publish/npm-mcp-server.js"]
+args    = ["./dist/index.js"]
 env     = { NPM_TOKEN = "${NPM_TOKEN}" }
