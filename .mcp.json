@@ -3,7 +3,7 @@
     "mcp-npm-publish": {
       "type": "stdio",
       "command": "npx",
-      "args": ["--yes", "--registry", "https://registry.npmjs.org", "mcp-npm-publish"],
+      "args": ["-y", "mcp-npm-publish"],
       "env": {
         "NPM_TOKEN": "${NPM_TOKEN}"
       }
